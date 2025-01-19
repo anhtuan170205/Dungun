@@ -75,11 +75,19 @@ public class RoomNodeSO : ScriptableObject
         {
             ProcessLeftClickDownEvent();
         }
+        else if (currentEvent.button == 1)
+        {
+            ProcessRightClickDownEvent(currentEvent);
+        }
     }
     private void ProcessLeftClickDownEvent()
     {
         Selection.activeObject = this;
         isSelected = !isSelected;
+    }
+    private void ProcessRightClickDownEvent(Event currentEvent)
+    {
+        roomNodeGraph.SetNodeToDrawLineFrom(this, currentEvent.mousePosition);
     }
     private void ProcessMouseUpEvent(Event currentEvent)
     {
@@ -113,6 +121,17 @@ public class RoomNodeSO : ScriptableObject
         rect.position += delta;
         EditorUtility.SetDirty(this);
     }
+    public bool AddChildRoomNodeIDToRoomNode(string childID)
+    {
+        childrenRoomNodeIDList.Add(childID);
+        return true;
+    }
+    public bool AddParentRoomNodeIDToRoomNode(string parentID)
+    {
+        parentRoomNodeIDList.Add(parentID);
+        return true;
+    }
+
     #endif
     #endregion Editor Code
 
