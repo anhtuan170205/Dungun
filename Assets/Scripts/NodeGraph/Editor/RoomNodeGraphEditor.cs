@@ -5,7 +5,8 @@ using UnityEditor.Callbacks;
 public class RoomNodeGraphEditor : EditorWindow
 {
     private GUIStyle roomNodeStyle;
-    public static RoomNodeGraphSO currentRoomNodeGraph;
+    private static RoomNodeGraphSO currentRoomNodeGraph;
+    private RoomNodeSO currentRoomNode = null; 
     private RoomNodeTypeListSO roomNodeTypeList;
     private const float nodeWidth = 160f;
     private const float nodeHeight = 75f;
@@ -52,9 +53,31 @@ public class RoomNodeGraphEditor : EditorWindow
     }   
     private void ProcessEvents(Event currentEvent)
     {
-        ProcessRoomNodeEvents(currentEvent);
+        if (currentRoomNode == null || currentRoomNode.isLeftClickDragging == false)
+        {
+            currentRoomNode = IsMouseOverRoomNode(currentEvent);
+        }
+        if (currentRoomNode != null)
+        {
+            currentRoomNode.ProcessEvents(currentEvent);
+        }
+        else
+        {
+            ProcessRoomNodeGraphEvents(currentEvent);
+        }
     }
-    private void ProcessRoomNodeEvents(Event currentEvent)
+    private RoomNodeSO IsMouseOverRoomNode(Event currentEvent)
+    {
+        for (int i=currentRoomNodeGraph.roomNodeList.Count-1; i>=0; i--)
+        {
+            if (currentRoomNodeGraph.roomNodeList[i].rect.Contains(currentEvent.mousePosition))
+            {
+                return currentRoomNodeGraph.roomNodeList[i];
+            }
+        }
+        return null;
+    }
+    private void ProcessRoomNodeGraphEvents(Event currentEvent)
     {
         switch (currentEvent.type)
         {
