@@ -5,6 +5,7 @@ using UnityEditor.Callbacks;
 public class RoomNodeGraphEditor : EditorWindow
 {
     private GUIStyle roomNodeStyle;
+    private GUIStyle roomNodeSelectedStyle;
     private static RoomNodeGraphSO currentRoomNodeGraph;
     private RoomNodeSO currentRoomNode = null; 
     private RoomNodeTypeListSO roomNodeTypeList;
@@ -22,12 +23,25 @@ public class RoomNodeGraphEditor : EditorWindow
     }
     private void OnEnable()
     {
+        Selection.selectionChanged += InspectorSelectionChanged;
+
         roomNodeStyle = new GUIStyle();
         roomNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
         roomNodeStyle.normal.textColor = Color.white;
         roomNodeStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
         roomNodeStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
+
+        roomNodeSelectedStyle = new GUIStyle();
+        roomNodeSelectedStyle.normal.background = EditorGUIUtility.Load("node1 on") as Texture2D;
+        roomNodeSelectedStyle.normal.textColor = Color.white;
+        roomNodeSelectedStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
+        roomNodeSelectedStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
+
         roomNodeTypeList = GameResources.Instance.roomNodeTypeList;
+    }
+    private void OnDisable()
+    {
+        Selection.selectionChanged -= InspectorSelectionChanged;
     }
     [OnOpenAsset(0)]
     public static bool OnDoubleClickAsset(int instanceID, int line)
@@ -105,6 +119,11 @@ public class RoomNodeGraphEditor : EditorWindow
         {
             ShowContextMenu(currentEvent.mousePosition);
         }
+        else if (currentEvent.button == 0)
+        {
+            ClearLineDrag();
+            ClearAllSelectedRoomNodes();
+        }
     }
     private void ShowContextMenu(Vector2 mousePosition)
     {
@@ -114,6 +133,10 @@ public class RoomNodeGraphEditor : EditorWindow
     }
     private void CreateRoomNode(object mousePositionObject)
     {
+        if (currentRoomNodeGraph.roomNodeList.Count == 0)
+        {
+            CreateRoomNode(new Vector2(200f, 200f), roomNodeTypeList.list.Find(x => x.isEntrance));
+        }
         CreateRoomNode(mousePositionObject, roomNodeTypeList.list.Find(x => x.isNone));
     }
     private void CreateRoomNode(object mousePositionObject, RoomNodeTypeSO roomNodeType)
@@ -164,7 +187,14 @@ public class RoomNodeGraphEditor : EditorWindow
     {
         foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
         {
-            roomNode.Draw(roomNodeStyle);
+            if (roomNode.isSelected)
+            {
+                roomNode.Draw(roomNodeSelectedStyle);
+            }
+            else
+            {
+                roomNode.Draw(roomNodeStyle);
+            }
         }
         GUI.changed = true;
     }
@@ -181,6 +211,17 @@ public class RoomNodeGraphEditor : EditorWindow
         currentRoomNodeGraph.roomNodeToDrawLineFrom = null;
         currentRoomNodeGraph.linePosition = Vector2.zero;
         GUI.changed = true;
+    }
+    private void ClearAllSelectedRoomNodes()
+    {
+        foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
+        {
+            if (roomNode.isSelected)
+            {
+                roomNode.isSelected = false;
+                GUI.changed = true;
+            }
+        }
     }
     private void DrawRoomNodesConnections()
     {
@@ -212,5 +253,14 @@ public class RoomNodeGraphEditor : EditorWindow
         Handles.DrawBezier(arrowHeadPoint, arrowTailPoint2, arrowHeadPoint, arrowTailPoint2, Color.white, null, lineWidth);
         Handles.DrawBezier(startPos, endPos, startPos, endPos, Color.white, null, lineWidth);
         GUI.changed = true;
+    }
+    private void InspectorSelectionChanged()
+    {
+        RoomNodeGraphSO roomNodeGraph = Selection.activeObject as RoomNodeGraphSO;
+        if (roomNodeGraph != null)
+        {
+            currentRoomNodeGraph = roomNodeGraph;
+            GUI.changed = true;
+        }
     }
 }

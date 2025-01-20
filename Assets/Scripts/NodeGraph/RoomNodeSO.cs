@@ -31,9 +31,16 @@ public class RoomNodeSO : ScriptableObject
     {
         GUILayout.BeginArea(rect, nodeStyle);
         EditorGUI.BeginChangeCheck();
-        int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
-        int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay());
-        roomNodeType = roomNodeTypeList.list[selection];
+        if (parentRoomNodeIDList.Count > 0 || roomNodeType.isEntrance)
+        {
+            EditorGUILayout.LabelField(roomNodeType.roomNodeTypeName);
+        }
+        else
+        {
+            int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
+            int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypesToDisplay());
+            roomNodeType = roomNodeTypeList.list[selection];
+        }
         if (EditorGUI.EndChangeCheck())
         {
             EditorUtility.SetDirty(this);
