@@ -148,12 +148,30 @@ public class RoomNodeGraphEditor : EditorWindow
     }
     private void CreateRoomNode(object mousePositionObject)
     {
-        if (currentRoomNodeGraph.roomNodeList.Count == 0)
+        // Safely cast the object to Vector2
+        if (mousePositionObject is Vector2 mousePosition)
         {
-            CreateRoomNode(new Vector2(200f, 200f), roomNodeTypeList.list.Find(x => x.isEntrance));
+            // If this is the first node, create an entrance node.
+            if (currentRoomNodeGraph.roomNodeList.Count == 0)
+            {
+                CreateRoomNode(mousePosition, roomNodeTypeList.list.Find(x => x.isEntrance));
+            }
+            else
+            {
+                // Create a corridor node at the mouse position.
+                CreateRoomNode(mousePosition, roomNodeTypeList.list.Find(x => x.isCorridor));
+
+                // Create a generic node slightly offset from the mouse position.
+                Vector2 offsetPosition = mousePosition + new Vector2(100f, 100f);
+                CreateRoomNode(offsetPosition, roomNodeTypeList.list.Find(x => x.isNone));
+            }
         }
-        CreateRoomNode(mousePositionObject, roomNodeTypeList.list.Find(x => x.isCorridor));
+        else
+        {
+            Debug.LogError("Invalid mouse position object. Expected Vector2.");
+        }
     }
+
     private void CreateRoomNode(object mousePositionObject, RoomNodeTypeSO roomNodeType)
     {
         Vector2 mousePosition = (Vector2)mousePositionObject;
