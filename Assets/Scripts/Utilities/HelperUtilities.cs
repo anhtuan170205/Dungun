@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class HelperUtilities
 {
-    public static bool ValidateCheckingEmptyString(Object thisObject, string fieldName, string stringToCheck)
+    public static bool ValidateCheckEmptyString(Object thisObject, string fieldName, string stringToCheck)
     {
         if (stringToCheck == "")
         {
@@ -13,7 +13,7 @@ public static class HelperUtilities
         }
         return false;
     }
-    public static bool ValidateCheckingEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
+    public static bool ValidateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
     {
         bool error = false;
         int count = 0;
