@@ -17,7 +17,7 @@ MonoBehaviour:
   previousPrefab: {fileID: 2506447519573437069, guid: 9bc86c8685b8343b38e787ada57358de, type: 3}
   roomNodeType: {fileID: 11400000, guid: 9e7f031618217442c9dab40cd035c811, type: 2}
   lowerBounds: {x: -3, y: -2}
-  upperBounds: {x: 8, y: 10}
+  upperBounds: {x: 8, y: 4}
   doorwayList:
   - position: {x: -3, y: 0}
     orientation: 3
@@ -27,7 +27,7 @@ MonoBehaviour:
     doorwayCopyTileHeight: 0
     isConnected: 0
     isUnavailable: 0
-  - position: {x: 8, y: 6}
+  - position: {x: 8, y: 0}
     orientation: 1
     doorPrefab: {fileID: 0}
     doorwayStartCopyPosition: {x: 0, y: 0}
@@ -36,4 +36,4 @@ MonoBehaviour:
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
-  - {x: 3, y: 3}
+  - {x: 3, y: 0}
