@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Floor", menuName = "Scriptable Objects/Dungeon/Room")]
+[CreateAssetMenu(fileName = "Room_", menuName = "Scriptable Objects/Dungeon/Room")]
 public class RoomTemplateSO : ScriptableObject
 {
     [HideInInspector] public string guid;
