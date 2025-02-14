@@ -31,6 +31,7 @@ public class DungeonLevelSO : ScriptableObject
             if (roomTemplateSO.roomNodeType.isCorridorNS) isNSCorridor = true;
             if (roomTemplateSO.roomNodeType.isEntrance) isEntrance = true;
         }
+
         if (!isEWCorridor) Debug.Log("No East-West Corridor found in " + this.name.ToString());
         if (!isNSCorridor) Debug.Log("No North-South Corridor found in " + this.name.ToString());
         if (!isEntrance) Debug.Log("No Entrance found in " + this.name.ToString());
@@ -54,6 +55,8 @@ public class DungeonLevelSO : ScriptableObject
                         break;
                     }
                 }
+                if (!isRoomTypeFound)
+                    Debug.Log("In " + this.name.ToString() + " : No room template " + roomNodeSO.roomNodeType.name.ToString() + " found for node graph " + roomNodeGraphSO.name.ToString());
             }
         }
     }
