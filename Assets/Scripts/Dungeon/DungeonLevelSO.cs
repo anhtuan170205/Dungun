@@ -8,23 +8,23 @@ public class DungeonLevelSO : ScriptableObject
     [Header("BASIC LEVEL DETAILS")]
     public string levelName;
     [Header("ROOM TEMPLATE FOR LEVEL")]
-    public List<RoomTemplateSO> roomTemplates;
+    public List<RoomTemplateSO> roomTemplateList;
     [Header("ROOM NODE GRAPH FOR LEVEL")]
-    public List<RoomNodeGraphSO> roomNodeGraphs;
+    public List<RoomNodeGraphSO> roomNodeGraphList;
 
     #region VALIDATION
     #if UNITY_EDITOR
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(levelName), levelName);
-        if (HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomTemplates), roomTemplates)) return;
-        if (HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomNodeGraphs), roomNodeGraphs)) return;
+        if (HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomTemplateList), roomTemplateList)) return;
+        if (HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomNodeGraphList), roomNodeGraphList)) return;
 
         bool isNSCorridor = false;
         bool isEWCorridor = false;
         bool isEntrance = false;
 
-        foreach (RoomTemplateSO roomTemplateSO in roomTemplates)
+        foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
         {
             if (roomTemplateSO == null) return;
             if (roomTemplateSO.roomNodeType.isCorridorEW) isEWCorridor = true;
@@ -36,7 +36,7 @@ public class DungeonLevelSO : ScriptableObject
         if (!isNSCorridor) Debug.Log("No North-South Corridor found in " + this.name.ToString());
         if (!isEntrance) Debug.Log("No Entrance found in " + this.name.ToString());
 
-        foreach (RoomNodeGraphSO roomNodeGraphSO in roomNodeGraphs)
+        foreach (RoomNodeGraphSO roomNodeGraphSO in roomNodeGraphList)
         {
             if (roomNodeGraphSO == null) continue;
             foreach (RoomNodeSO roomNodeSO in roomNodeGraphSO.roomNodeList)
@@ -46,7 +46,7 @@ public class DungeonLevelSO : ScriptableObject
                     || roomNodeSO.roomNodeType.isCorridor || roomNodeSO.roomNodeType.isNone) continue;
                 
                 bool isRoomTypeFound = false;
-                foreach (RoomTemplateSO roomTemplateSO in roomTemplates)
+                foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
                 {
                     if (roomTemplateSO == null) return;
                     if (roomNodeSO.roomNodeType == roomTemplateSO.roomNodeType)

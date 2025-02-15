@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DungeonLevel_Level4
   m_EditorClassIdentifier: 
   levelName: The Ancient Ruin
-  roomTemplates:
+  roomTemplateList:
   - {fileID: 11400000, guid: 93d5a19f4b6aace49922793f3fb19975, type: 2}
   - {fileID: 11400000, guid: c78573f3520f5964bab250658e509661, type: 2}
   - {fileID: 11400000, guid: a78e57a22b8441a4d920713690bfbe82, type: 2}
@@ -43,7 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3216d5965faf72d41bf434dc2f864c9f, type: 2}
   - {fileID: 11400000, guid: 2bafece5e9f1b6640aae23a14277e201, type: 2}
   - {fileID: 11400000, guid: 28d0c4990e5f6dd4e9d0a3352c25e1f3, type: 2}
-  roomNodeGraphs:
+  roomNodeGraphList:
   - {fileID: 11400000, guid: e06afce070fae484b9f080cdead4cf96, type: 2}
   - {fileID: 11400000, guid: 3e1b22babcc474b809ac182236322c37, type: 2}
   - {fileID: 11400000, guid: 1d281d771f00947e38c0ea56f2bfe6b5, type: 2}

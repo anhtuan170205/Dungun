@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DungeonLevel_Level3
   m_EditorClassIdentifier: 
   levelName: The Lost Tomb
-  roomTemplates:
+  roomTemplateList:
   - {fileID: 11400000, guid: b497cf51860cc124088acdf3dfcc4bdc, type: 2}
   - {fileID: 11400000, guid: aeaa238dda2b934409291731e7646e39, type: 2}
   - {fileID: 11400000, guid: 5e10298487db4a548a9e425ea037c915, type: 2}
@@ -43,7 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffb5abf059fa3cb4187f05ee5225308f, type: 2}
   - {fileID: 11400000, guid: 68ce17f0d8ab2134a9bbda3b2b5c5c55, type: 2}
   - {fileID: 11400000, guid: a1fc9a74671f47140ab0810c460f9623, type: 2}
-  roomNodeGraphs:
+  roomNodeGraphList:
   - {fileID: 11400000, guid: bdee2c63ebf11496fbd4b9dec4ec0d77, type: 2}
   - {fileID: 11400000, guid: 51e55c9976fc84ef9802126ef646b2c2, type: 2}
   - {fileID: 11400000, guid: 309f017729c9747f2b1479c4d142a454, type: 2}

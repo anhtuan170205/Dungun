@@ -818,7 +818,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Alpha",
     "m_DefaultReferenceName": "_Alpha",
-    "m_OverrideReferenceName": "_Alpha_Slider",
+    "m_OverrideReferenceName": "Alpha_Slider",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
