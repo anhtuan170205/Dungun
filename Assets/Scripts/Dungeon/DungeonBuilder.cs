@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [DisallowMultipleComponent]
 public class DungeonBuilder : SingletonMonoBehaviour<DungeonBuilder>
@@ -122,12 +123,12 @@ public class DungeonBuilder : SingletonMonoBehaviour<DungeonBuilder>
             {
                 case Orientation.north:
                 case Orientation.south:
-                    roomTemplate = GetRandomRoomTemplate(roomNodeTypeList.list.Find(x => x.isCorridor && x.isCorridorNS));
+                    roomTemplate = GetRandomRoomTemplate(roomNodeTypeList.list.Find(x => x.isCorridorNS));
                     break;
                 
                 case Orientation.east:
                 case Orientation.west:
-                    roomTemplate = GetRandomRoomTemplate(roomNodeTypeList.list.Find(x => x.isCorridor && x.isCorridorEW));
+                    roomTemplate = GetRandomRoomTemplate(roomNodeTypeList.list.Find(x => x.isCorridorEW));
                     break;
                 
                 case Orientation.none:
@@ -381,7 +382,16 @@ public class DungeonBuilder : SingletonMonoBehaviour<DungeonBuilder>
 
     private void InstantiateRoomGameObjects()
     {
-
+        foreach (KeyValuePair<string, Room> keyValuePair in dungeonBuilderRoomDictionary)
+        {
+            Room room = keyValuePair.Value;
+            Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
+            GameObject roomGameObject = Instantiate(room.prefab, roomPosition, Quaternion.identity, transform);
+            InstantiatedRoom instantiatedRoom = roomGameObject.GetComponentInChildren<InstantiatedRoom>();
+            instantiatedRoom.room = room;
+            instantiatedRoom.Initialize(roomGameObject);
+            room.instantiatedRoom = instantiatedRoom;
+        }
     }
 
     public RoomTemplateSO GetRoomTemplate(string roomTemplateID)

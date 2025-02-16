@@ -257,9 +257,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.21001928
     width: 1
-    height: 1
+    height: 0.58092487
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -618,7 +618,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fdf8fb4c1210465da6e8c90679d2967, type: 2}
   - {fileID: 11400000, guid: db2df76de41d849098bbcd7b680b4678, type: 2}
   - {fileID: 11400000, guid: 0bf720571fe4744ac8c60cc1af0065e2, type: 2}
-  currentDungeonLevelListIndex: 0
+  currentDungeonLevelListIndex: 4
   gameState: 0
 --- !u!4 &1331985600
 Transform:
