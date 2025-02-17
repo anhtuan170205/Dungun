@@ -17,8 +17,10 @@ public class GameResources : MonoBehaviour
         }
     }
     [Header("DUNGEON")]
-
     public RoomNodeTypeListSO roomNodeTypeList;
+
+    [Header("PLAYER")]
+    public CurrentPlayerSO currentPlayer;
     
     [Header("MATERIALS")]
     public Material dimmedMaterial;
