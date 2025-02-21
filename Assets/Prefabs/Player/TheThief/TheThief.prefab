@@ -8,9 +8,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3325176532462671144, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325176532462671144, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325176532462671144, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aca137add87b64cae804e5b5a473b7b3, type: 3}
+    - target: {fileID: 3325176532462671144, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073231002356046510, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073231002356046510, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073231002356046510, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aca137add87b64cae804e5b5a473b7b3, type: 3}
+    - target: {fileID: 4073231002356046510, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180420274295465954, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: afb44102761b34388bfdc5852889d244, type: 2}
     - target: {fileID: 5367415014581755259, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: TheThief
       objectReference: {fileID: 0}
     - target: {fileID: 5978692673606270560, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,6 +88,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8416340393654957534, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2094231044, guid: 940dbd1d8de44477da692afba8c7c836, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
