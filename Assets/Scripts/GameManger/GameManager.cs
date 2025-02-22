@@ -14,17 +14,48 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
 
     [SerializeField] private int currentDungeonLevelListIndex = 0;
+    private Room currentRoom;
+    private Room previousRoom;
+    private PlayerDetailsSO playerDetails;
+    private Player player;
 
     [HideInInspector] public GameState gameState;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        playerDetails = GameResources.Instance.currentPlayer.playerDetails;
+        InstantiatePlayer();
+    } 
 
-    // Start is called before the first frame update
+    private void InstantiatePlayer()
+    {
+        GameObject playerGameObject = Instantiate(playerDetails.playerPrefab);
+        player = playerGameObject.GetComponent<Player>();
+        player.Initialize(playerDetails);
+    }
+
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
+    }
+
     private void Start()
     {
         gameState = GameState.gameStarted;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         HandleGameState();
@@ -39,18 +70,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     private void HandleGameState()
     {
-        // Handle game state
         switch (gameState)
         {
             case GameState.gameStarted:
-
-                // Play first level
                 PlayDungeonLevel(currentDungeonLevelListIndex);
-
                 gameState = GameState.playingLevel;
-
                 break;
-
         }
 
     }
@@ -63,6 +88,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             Debug.LogError("Dungeon could not be built successfully.");
         }
+        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
     }
 
 
