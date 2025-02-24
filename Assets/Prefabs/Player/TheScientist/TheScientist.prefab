@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e52ed9234b488b0449570da9e57ce474, type: 2}
+    - target: {fileID: 5237329928424791304, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: c06b4d36ed12f4086b4f03893106d856, type: 2}
     - target: {fileID: 5367415014581755259, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
       propertyPath: m_Name
       value: TheScientist

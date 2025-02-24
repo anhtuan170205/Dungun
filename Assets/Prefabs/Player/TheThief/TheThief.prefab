@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: afb44102761b34388bfdc5852889d244, type: 2}
+    - target: {fileID: 5237329928424791304, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 6bb7fa15965d049fabb939735e64c966, type: 2}
     - target: {fileID: 5367415014581755259, guid: 45cc9b0624b634d06a609ecfa7ebc22d, type: 3}
       propertyPath: m_Name
       value: TheThief

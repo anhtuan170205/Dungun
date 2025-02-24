@@ -173,6 +173,8 @@ GameObject:
   - component: {fileID: 9004088449150799364}
   - component: {fileID: 5237329928424791304}
   - component: {fileID: 218239648640129061}
+  - component: {fileID: 1405084017968578005}
+  - component: {fileID: 5831206269616022608}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -443,6 +445,7 @@ MonoBehaviour:
   playerDetails: {fileID: 0}
   health: {fileID: 0}
   idleEvent: {fileID: 0}
+  movementByVelocityEvent: {fileID: 0}
   aimWeaponEvent: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
@@ -518,6 +521,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 167b1995702184938b8330a62f331510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1405084017968578005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367415014581755259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95970c89e03fc47f08256cdcd377a970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5831206269616022608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367415014581755259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710a3bebe7bbe433b80388f9dde36e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6816869918053400385
