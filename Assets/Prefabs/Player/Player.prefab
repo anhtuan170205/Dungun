@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponShootPosition: {fileID: 2971398047645754980}
+  movementDetails: {fileID: 11400000, guid: c06b4d36ed12f4086b4f03893106d856, type: 2}
 --- !u!114 &218239648640129061
 MonoBehaviour:
   m_ObjectHideFlags: 0
