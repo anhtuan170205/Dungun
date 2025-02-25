@@ -7,6 +7,7 @@ using Cinemachine;
 public class CinemachineTarget : MonoBehaviour
 {
     private CinemachineTargetGroup cinemachineTargetGroup;
+    [SerializeField] private Transform cursorTarget;
 
     private void Awake()
     {
@@ -23,13 +24,24 @@ public class CinemachineTarget : MonoBehaviour
         CinemachineTargetGroup.Target cinemachineTargetGroup_player = new CinemachineTargetGroup.Target 
         {
             target = GameManager.Instance.GetPlayer().transform,
+            radius = 2.5f,
+            weight = 1
+        };
+        CinemachineTargetGroup.Target cinemachineTargetGroup_cursor = new CinemachineTargetGroup.Target
+        {
+            target = cursorTarget,
             radius = 1,
             weight = 1
         };
         CinemachineTargetGroup.Target[] cinemachineTargetArray = new CinemachineTargetGroup.Target[]
         {
-            cinemachineTargetGroup_player
+            cinemachineTargetGroup_player,
+            cinemachineTargetGroup_cursor
         };
         cinemachineTargetGroup.m_Targets = cinemachineTargetArray;
+    }
+    private void Update()
+    {
+        cursorTarget.position = HelperUtilities.GetMouseWorldPosition();
     }
 }
