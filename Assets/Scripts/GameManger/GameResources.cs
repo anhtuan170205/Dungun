@@ -24,4 +24,20 @@ public class GameResources : MonoBehaviour
     
     [Header("MATERIALS")]
     public Material dimmedMaterial;
+    public Material litMaterial;
+    public Shader variableLitShader;
+
+    #region VALIDATION
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(roomNodeTypeList), roomNodeTypeList);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(currentPlayer), currentPlayer);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
+    }
+
+    #endif
+    #endregion VALIDATION
 }

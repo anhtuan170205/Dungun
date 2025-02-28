@@ -88,6 +88,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             Debug.LogError("Dungeon could not be built successfully.");
         }
+        StaticEventHandler.CallRoomChangedEvent(currentRoom);
         player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
         player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
     }

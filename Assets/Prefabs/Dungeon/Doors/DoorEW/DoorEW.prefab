@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6330537380202785312}
   - component: {fileID: 6846370230598773536}
+  - component: {fileID: 786032170000231703}
   m_Layer: 13
   m_Name: DoorLightningControl
   m_TagString: Untagged
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11, y: 5.5}
   m_EdgeRadius: 0
+--- !u!114 &786032170000231703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214258286465688255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01557faa3ce5439eb619c3d25d3318c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6249631818299676103
 GameObject:
   m_ObjectHideFlags: 0
