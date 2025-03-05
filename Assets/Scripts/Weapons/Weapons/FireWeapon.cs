@@ -3,19 +3,23 @@ using UnityEngine;
 
 [RequireComponent(typeof(ActiveWeapon))]
 [RequireComponent(typeof(FireWeaponEvent))]
+[RequireComponent(typeof(ReloadWeaponEvent))]
 [RequireComponent(typeof(WeaponFiredEvent))]
+
 [DisallowMultipleComponent]
 public class FireWeapon : MonoBehaviour
 {
     private float fireRateCooldownTimer = 0f;
     private ActiveWeapon activeWeapon;
     private FireWeaponEvent fireWeaponEvent;
+    private ReloadWeaponEvent reloadWeaponEvent;
     private WeaponFiredEvent weaponFiredEvent;
 
     private void Awake()
     {
         activeWeapon = GetComponent<ActiveWeapon>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
+        reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
         weaponFiredEvent = GetComponent<WeaponFiredEvent>();
     }
     private void OnEnable()
@@ -63,6 +67,7 @@ public class FireWeapon : MonoBehaviour
         }
         if (!activeWeapon.GetCurrentWeapon().weaponDetails.hasInfiniteClipAmmo && activeWeapon.GetCurrentWeapon().weaponClipRemainingAmmo <= 0)
         {
+            reloadWeaponEvent.CallReloadWeaponEvent(activeWeapon.GetCurrentWeapon(), 0);
             return false;
         }
         return true;
@@ -77,7 +82,7 @@ public class FireWeapon : MonoBehaviour
             float ammoSpeed = Random.Range(currentAmmo.ammoSpeedMin, currentAmmo.ammoSpeedMax);
             IFireable ammo = (IFireable)PoolManager.Instance.ReuseComponent(ammoPrefab, activeWeapon.GetShootPosition(), Quaternion.identity);
             ammo.InitialiseAmmo(currentAmmo, aimAngle, weaponAimAngle, ammoSpeed, weaponAimDirectionVector);
-            if (!activeWeapon.GetCurrentWeapon().weaponDetails.hasInfiniteAmmo)
+            if (!activeWeapon.GetCurrentWeapon().weaponDetails.hasInfiniteClipAmmo)
             {
                 activeWeapon.GetCurrentWeapon().weaponClipRemainingAmmo--;
                 activeWeapon.GetCurrentWeapon().weaponRemainingAmmo--;
