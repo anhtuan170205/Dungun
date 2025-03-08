@@ -9,6 +9,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class FireWeapon : MonoBehaviour
 {
+    private float firePreChargeTimer = 0f;
     private float fireRateCooldownTimer = 0f;
     private ActiveWeapon activeWeapon;
     private FireWeaponEvent fireWeaponEvent;
@@ -42,13 +43,27 @@ public class FireWeapon : MonoBehaviour
     }
     private void WeaponFire(FireWeaponEventArgs fireWeaponEventArgs)
     {
+        WeaponPreCharge(fireWeaponEventArgs);
         if (fireWeaponEventArgs.fire)
         {
             if (IsWeaponReadyToFire())
             {
                 FireAmmo(fireWeaponEventArgs.aimAngle, fireWeaponEventArgs.weaponAimAngle, fireWeaponEventArgs.weaponAimDirectionVector);
                 ResetCooldownTimer();
+                ResetPrechargeTimer();
             }
+        }
+    }
+
+    private void WeaponPreCharge(FireWeaponEventArgs fireWeaponEventArgs)
+    {
+        if (fireWeaponEventArgs.firePreviousFrame)
+        {
+            firePreChargeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ResetPrechargeTimer();
         }
     }
     private bool IsWeaponReadyToFire()
@@ -61,7 +76,7 @@ public class FireWeapon : MonoBehaviour
         {
             return false;
         }
-        if (fireRateCooldownTimer > 0)
+        if (fireRateCooldownTimer > 0f || firePreChargeTimer > 0f)
         {
             return false;
         }
@@ -93,5 +108,9 @@ public class FireWeapon : MonoBehaviour
     private void ResetCooldownTimer()
     {
         fireRateCooldownTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponFireRate;
+    }
+    private void ResetPrechargeTimer()
+    {
+        firePreChargeTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponPrechargeTime;
     }
 }
