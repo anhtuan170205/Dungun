@@ -28,6 +28,6 @@ public class Idle : MonoBehaviour
     }
     private void MoveRigidBody()
     {
-        rigidBody2D.velocity = Vector2.zero;
+        rigidBody2D.linearVelocity = Vector2.zero;
     }
 }
